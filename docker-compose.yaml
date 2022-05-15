@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  weather_service:
+    build: .
+    restart: always
+    ports:
+      - 8900:8900
+      - 80:80
+    environment:
+      - OPENWEATHER_API_KEY
