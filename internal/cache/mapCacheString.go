@@ -7,12 +7,6 @@ type MapCacheString struct {
 	mutex   sync.RWMutex
 }
 
-func NewMapCacheString() *MapCacheString {
-	return &MapCacheString{
-		Storage: make(map[string]string),
-	}
-}
-
 func (m *MapCacheString) Set(key, value string) error {
 	m.mutex.Lock()
 	defer m.mutex.Unlock()

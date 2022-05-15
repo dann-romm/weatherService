@@ -53,7 +53,7 @@ func (o *OpenWeatherMapService) GetWeather() (Weather, error) {
 	if err != nil {
 		return Weather{}, err
 	}
-	defer resp.Body.Close()
+	defer func() { _ = resp.Body.Close() }()
 	parsed, err := ParseResponseData(resp)
 	if err != nil {
 		return Weather{}, err
