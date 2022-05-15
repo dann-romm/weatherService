@@ -30,6 +30,7 @@ func (o *OpenWeatherMapService) Init(context.Context) error {
 }
 
 func (o *OpenWeatherMapService) Ping(context.Context) error {
+	_, _ = o.GetWeather() // TODO: updating cache every 5 sec, but weather data changes every 1 hour
 	return nil
 }
 
@@ -38,11 +39,12 @@ func (o *OpenWeatherMapService) Close() error {
 }
 
 func (o *OpenWeatherMapService) GetWeather() (Weather, error) {
-	strTime := time.Now().Format("01-01-2002")
+	strTime := time.Now().Format("2006-01-02 15")
 	value, err := o.cache.Get(strTime)
 	if err == nil {
 		return value.(Weather), nil
 	}
+	_ = o.cache.Clear()
 	req, err := NewOpenWeatherMapRequest(context.Background(), "Moscow", "ru")
 	if err != nil {
 		return Weather{}, err

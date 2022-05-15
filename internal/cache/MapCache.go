@@ -38,3 +38,10 @@ func (m *MapCache) Delete(key string) error {
 	delete(m.Storage, key)
 	return nil
 }
+
+func (m *MapCache) Clear() error {
+	for key := range m.Storage {
+		delete(m.Storage, key)
+	}
+	return nil
+}
