@@ -1,0 +1,7 @@
+# you can open project wherever you want
+.idea
+# test folder should not include to repo
+tests
+
+# binary file which needs to be recompiled
+weatherService
