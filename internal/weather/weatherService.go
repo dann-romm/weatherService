@@ -62,6 +62,11 @@ func (o *OpenWeatherMapService) GetWeather() (Weather, error) {
 	if err = o.cache.Set(strTime, w); err != nil {
 		return Weather{}, err
 	}
+	oldTime := time.Now().Add(-time.Hour * 24).Format("01-01-2002")
+	err = o.cache.Delete(oldTime)
+	if err != nil {
+		return Weather{}, err
+	}
 	return w, nil
 }
 
