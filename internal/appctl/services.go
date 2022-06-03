@@ -39,7 +39,7 @@ const (
 	srvStateShutdown
 	srvStateOff
 
-	defaultPingPeriod      = time.Second * 5
+	defaultPingPeriod      = time.Minute * 5
 	defaultPingTimeout     = time.Millisecond * 1500
 	defaultShutdownTimeout = time.Millisecond * 15000
 )
